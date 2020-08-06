@@ -14,9 +14,8 @@ def do_ttime(datetime_obj):
     return time.mktime(datetime_obj.timetuple())
 
 
-def set_file_dates(filename, dates):
-    # вроде должно принимать как
-    # создано, произошёл доступ, изменено
+def set_file_dates(filename, dates): # accepts dates argument as in order:
+    #                                      created; acessed; modified
     dates = [do_ttime(i) for i in dates]
     if __use_win_32:
         filehandle = win32file.CreateFile(
@@ -31,7 +30,7 @@ def string_to_time(s):
     return datetime.datetime.strptime(s, "%d.%m.%Y %H:%M:%S")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": # sorry for example in Russian
     print(r"Ввод производится в формате: %d.%m.%Y %H:%M:%S")
     file = input("Введите нужное имя файла: ")
     ctime = string_to_time(input("Введите нужное время создания: "))
